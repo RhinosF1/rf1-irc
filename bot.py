@@ -1,3 +1,10 @@
+### NOTICE TO USERS ###
+# PLEASE ENSURE THAT YOU CHECK WHERE EVERY MESSAGE IS BEING SENT TO ENSURE IT MATCHES WHERE IT NEEDS TO GO #
+# MESSAGES BEING SENT BY BOTS THAT ARE CAUSED BY FAILURE TO CHECK CODE ARE SPAM #
+# INCIDENTS MAY BE REPORTED TO NETWORK STAFF OR THE BOT'S HOSTING PROVIDER #
+# PLEASE ALSO CHECK NICKSERV PASSWORDS AND API KEYS ARE UP TO DATE #
+### ENDS ###
+
 import JustIRC
 import random
 import requests
@@ -22,9 +29,9 @@ def on_welcome(bot):
     bot.send_message('NickServ', 'identify ')
     print('Authed to NickServ')
     time.sleep(199)
-    bot.join_channel('#wikipedia-en-appleinc')
+    bot.join_channel('#channel') #change to channels needed
     print('Joined w-e-ai')
-    bot.join_channel('##test1')
+    bot.join_channel('##test1') #may be used for testing purposes
     print('Joined #t1')
 def on_message(bot, channel, sender, message):
     if "hi" == message.lower() or "hello" == message.lower():
@@ -41,7 +48,7 @@ def on_message(bot, channel, sender, message):
             if weather_data["cod"] == 200:
                 bot.send_message(channel, "The weather in {} is {} and {} degrees.".format(weather_data["name"], weather_data["weather"][0]["description"], weather_data["main"]["temp"]))
             else:
-                bot.send_message('RhinosF1', 'API Fault')
+                bot.send_message('', 'API Fault')
         else:
             bot.send_message(channel, "Usage: !weather Istanbul")
     for message_part in message.split():
@@ -63,13 +70,13 @@ def on_message(bot, channel, sender, message):
             opcount.close()
             if opnum < 3:
                 bot.send_message(channel, 'Operators have been notified. If no one responds, contact a freenode staff member in #freenode or a wmfgc.')
-                bot.send_message('dtm', 'Operator assistance needed in #wikipedia-en-appleinc')
-                bot.send_message('RhinosF1', 'Operator assistance needed in #wikipedia-en-appleinc')
+                bot.send_message('', 'Operator assistance needed in #wikipedia-en-appleinc')
+                bot.send_message('', 'Operator assistance needed in #wikipedia-en-appleinc')
                 print('OP stalk was used.')
             if opnum == 3:
                 bot.send_message(channel, 'If no operator is responding then contact a wmfgc or freenode staff member in #freenode.')
-                bot.send_message('dtm',"Please assist in #wikipedia-en-appleinc - the user may now contact freenode staff or a wmfgc")
-                bot.send_message('RhinosF1',"Please assist in #wikipedia-en-appleinc - the user may now contact freenode staff or a wmfgc")
+                bot.send_message('',"Please assist in #wikipedia-en-appleinc - the user may now contact freenode staff or a wmfgc")
+                bot.send_message('',"Please assist in #wikipedia-en-appleinc - the user may now contact freenode staff or a wmfgc")
                 print('OP needed')
             if opnum > 3:
                 bot.send_message(channel, 'Please contact a wmfgc or freenode staff member in #freenode. No chanops seem to responding')
